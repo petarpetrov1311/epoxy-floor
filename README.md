@@ -33,7 +33,17 @@ If you add your own backend later, prefer standard Vite variables such as:
 VITE_API_BASE_URL=https://api.example.com
 ```
 
+For the quote form on Vercel, add these server-side environment variables:
+
+```bash
+RESEND_API_KEY=re_xxxxxxxxx
+QUOTE_FROM_EMAIL="Website Quotes <quotes@yourdomain.com>"
+QUOTE_TO_EMAIL=epoxy_fl@abv.bg
+```
+
+`QUOTE_FROM_EMAIL` should use an address from a domain you have verified in Resend.
+
 ## Notes
 
-- The current contact form is frontend-only and does not submit to a backend yet.
+- The contact form now submits to the Vercel function at `/api/quote`.
 - Some page images are still loaded from external URLs. If you want the site to be fully self-contained, move those assets into the project and serve them from `public/`.
