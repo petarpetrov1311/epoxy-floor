@@ -124,12 +124,12 @@ export default function Portfolio() {
         </motion.div>
 
         <div className="text-center mt-10">
-          <a
-            href="#contact"
+          <button
+            onClick={() => setActiveCategory('Всички')}
             className="inline-block border-2 border-primary text-primary px-8 py-3 font-semibold rounded hover:bg-primary hover:text-white transition-all duration-200"
           >
             Виж всички проекти
-          </a>
+          </button>
         </div>
       </div>
 

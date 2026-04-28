@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <img
-              src="https://www.epoxy-fl.com/wp-content/uploads/2022/11/logo-white.png"
+              src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/e9652468c_ChatGPTImage2804202622_17_20.png"
               alt="Epoxy Floors"
               className="h-14 w-auto object-contain mb-5"
               onError={(e) => {

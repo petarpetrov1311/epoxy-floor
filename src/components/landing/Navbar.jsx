@@ -50,9 +50,9 @@ export default function Navbar() {
             {/* Logo */}
             <a href="#hero" className="flex items-center gap-3">
               <img
-                src="https://www.epoxy-fl.com/wp-content/uploads/2022/11/logo-blue.png"
+                src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/516f7defa_ChatGPTImage2804202622_41_49.png"
                     alt="Epoxy Floors Logo"
-                    className="h-12 w-auto object-contain"
+                    className="h-14 w-auto object-contain"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
