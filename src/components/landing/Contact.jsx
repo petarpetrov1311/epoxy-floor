@@ -1,51 +1,82 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
+import { CheckCircle, Mail, MapPin, Phone, Send } from 'lucide-react';
+
+const initialFormState = {
+  name: '',
+  email: '',
+  phone: '',
+  company: '',
+  message: '',
+  website: ''
+};
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', company: '', message: '' });
+  const [form, setForm] = useState(initialFormState);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send the quote request right now.');
+      }
+
       setSubmitted(true);
+      setForm(initialFormState);
       setTimeout(() => {
-        setForm({ name: '', email: '', phone: '', company: '', message: '' });
         setSubmitted(false);
       }, 4000);
-    }, 1000);
+    } catch (error) {
+      setSubmitError(error.message || 'Unable to send the quote request right now.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((currentForm) => ({
+      ...currentForm,
+      [e.target.name]: e.target.value
+    }));
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div ref={ref} className="text-center mb-12">
+    <section id="contact" className="bg-muted/30 py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div ref={ref} className="mb-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Заявете оферта</h2>
-            <div className="w-16 h-1 bg-primary mx-auto mb-5" />
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Пишете ни и наш служител ще се свърже с Вас за да Ви изготви персонална оферта, 
-              съобразена с Вашите изисквания.
+            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Заявете оферта</h2>
+            <div className="mx-auto mb-5 h-1 w-16 bg-primary" />
+            <p className="mx-auto max-w-xl text-muted-foreground">
+              Пишете ни и наш служител ще се свърже с Вас, за да Ви изготви персонална
+              оферта, съобразена с Вашите изисквания.
             </p>
           </motion.div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-10">
-          {/* Contact info */}
+        <div className="grid gap-10 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -53,44 +84,45 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-lg font-bold text-foreground mb-6">Контакти</h3>
+              <h3 className="mb-6 text-lg font-bold text-foreground">Контакти</h3>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-primary" />
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Phone className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-1">Телефон</p>
-                    <a href="tel:+359898512776" className="font-semibold text-foreground hover:text-primary transition-colors">
+                    <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">Телефон</p>
+                    <a href="tel:+359898512776" className="font-semibold text-foreground transition-colors hover:text-primary">
                       +359 898 512 776
                     </a>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-primary" />
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-1">Email</p>
-                    <a href="mailto:epoxy_fl@abv.bg" className="font-semibold text-foreground hover:text-primary transition-colors">
+                    <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">Email</p>
+                    <a href="mailto:epoxy_fl@abv.bg" className="font-semibold text-foreground transition-colors hover:text-primary">
                       epoxy_fl@abv.bg
                     </a>
                   </div>
                 </div>
+
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-1">Местоположение</p>
+                    <p className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">Местоположение</p>
                     <p className="font-semibold text-foreground">България</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Map */}
-            <div className="rounded-lg overflow-hidden border border-border h-52 shadow-sm">
+            <div className="h-52 overflow-hidden rounded-lg border border-border shadow-sm">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d187452.6168660093!2d23.186118850000002!3d42.6976665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8682cb317bf5%3A0x400a01269bf5e60!2sSofia%2C%20Bulgaria!5e0!3m2!1sen!2sus!4v1697558700000"
                 width="100%"
@@ -103,15 +135,14 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="bg-white rounded-lg shadow-sm border border-border p-8">
-              <h3 className="text-xl font-bold text-foreground mb-6">Заявка за оферта</h3>
+            <div className="rounded-lg border border-border bg-white p-8 shadow-sm">
+              <h3 className="mb-6 text-xl font-bold text-foreground">Заявка за оферта</h3>
 
               {submitted ? (
                 <motion.div
@@ -119,14 +150,29 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-16"
                 >
-                  <CheckCircle className="w-16 h-16 text-primary mb-4" />
-                  <h4 className="text-xl font-bold text-foreground mb-2">Заявката е изпратена!</h4>
-                  <p className="text-muted-foreground text-center">Наш представител ще се свърже с Вас скоро.</p>
+                  <CheckCircle className="mb-4 h-16 w-16 text-primary" />
+                  <h4 className="mb-2 text-xl font-bold text-foreground">Заявката е изпратена!</h4>
+                  <p className="text-center text-muted-foreground">
+                    Наш представител ще се свърже с Вас скоро.
+                  </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="grid gap-5 md:grid-cols-2">
+                  <div className="hidden">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      type="text"
+                      name="website"
+                      value={form.website}
+                      onChange={handleChange}
+                      autoComplete="off"
+                      tabIndex="-1"
+                    />
+                  </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-foreground">
                       Име, Фамилия <span className="text-primary">*</span>
                     </label>
                     <input
@@ -135,12 +181,13 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       required
-                      className="w-full border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full rounded border border-border px-4 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
                       placeholder="Иван Иванов"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-foreground">
                       Email <span className="text-primary">*</span>
                     </label>
                     <input
@@ -149,12 +196,13 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       required
-                      className="w-full border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full rounded border border-border px-4 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
                       placeholder="ivan@company.bg"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-foreground">
                       Телефон <span className="text-primary">*</span>
                     </label>
                     <input
@@ -163,23 +211,25 @@ export default function Contact() {
                       value={form.phone}
                       onChange={handleChange}
                       required
-                      className="w-full border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full rounded border border-border px-4 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
                       placeholder="+359 888 123 456"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Дружество</label>
+                    <label className="mb-1.5 block text-sm font-medium text-foreground">Дружество</label>
                     <input
                       type="text"
                       name="company"
                       value={form.company}
                       onChange={handleChange}
-                      className="w-full border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      className="w-full rounded border border-border px-4 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
                       placeholder="Фирма ООД"
                     />
                   </div>
+
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-foreground">
                       Опишете Вашия обект <span className="text-primary">*</span>
                     </label>
                     <textarea
@@ -188,22 +238,29 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full border border-border rounded px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors resize-none"
+                      className="w-full resize-none rounded border border-border px-4 py-2.5 text-sm text-foreground transition-colors focus:border-primary focus:outline-none"
                       placeholder="Площ, местоположение, вид на обекта..."
                     />
                   </div>
+
                   <div className="md:col-span-2">
+                    {submitError && (
+                      <p className="mb-3 rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                        {submitError}
+                      </p>
+                    )}
+
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-primary text-white py-3.5 text-sm font-semibold rounded hover:bg-primary/90 disabled:opacity-60 transition-all duration-200 flex items-center justify-center gap-2"
+                      className="flex w-full items-center justify-center gap-2 rounded bg-primary py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary/90 disabled:opacity-60"
                     >
                       {loading ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                       ) : (
                         <>
                           Изпрати заявка
-                          <Send className="w-4 h-4" />
+                          <Send className="h-4 w-4" />
                         </>
                       )}
                     </button>

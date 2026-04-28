@@ -12,6 +12,8 @@ dist-ssr/
 .vercel/
 coverage/
 
+secret/
+
 # Logs
 logs/
 *.log
