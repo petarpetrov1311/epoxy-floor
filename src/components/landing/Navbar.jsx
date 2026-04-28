@@ -1,23 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const navLinks = [
-  { label: 'Начало', href: '#hero' },
-  { label: 'Настилки', href: '#services' },
-  { label: 'Проекти', href: '#projects' },
-  { label: 'За нас', href: '#about' },
-  { label: 'Контакти', href: '#contact' },
+const serviceLinks = [
+  { label: 'Хранително-вкусова промишленост', href: '/nastilki/hranitelno-vkusova' },
+  { label: 'Производства и складове', href: '/nastilki/proizvodstva-i-skladove' },
+  { label: 'Паркинги и гаражи', href: '/nastilki/parking-i-garaji' },
+  { label: 'Тераси и хидроизолации', href: '/nastilki/terasi-i-hidroizolacii' },
+  { label: 'Декоративни настилки', href: '/nastilki/dekorativni' },
+  { label: 'Многослойни епоксидни настилки', href: '/nastilki/mnogoslojni' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
@@ -71,15 +86,44 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+              <a href="/#hero" className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200">Начало</a>
+
+              {/* Настилки dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
                 >
-                  {link.label}
-                </a>
-              ))}
+                  Настилки
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {dropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-2 w-72 bg-white border border-border rounded-lg shadow-xl z-50 py-2"
+                    >
+                      {serviceLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          to={link.href}
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2.5 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <a href="/#projects" className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200">Проекти</a>
+              <a href="/#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200">За нас</a>
+              <a href="/#contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors duration-200">Контакти</a>
             </div>
 
             {/* CTA */}
@@ -110,18 +154,39 @@ export default function Navbar() {
               className="md:hidden bg-white border-t border-border overflow-hidden"
             >
               <div className="px-6 py-4 space-y-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block py-2 text-foreground hover:text-primary font-medium transition-colors"
+                <a href="/#hero" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Начало</a>
+
+                {/* Mobile services dropdown */}
+                <div>
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="flex items-center justify-between w-full py-2 text-foreground hover:text-primary font-medium transition-colors"
                   >
-                    {link.label}
-                  </a>
-                ))}
+                    Настилки
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {mobileServicesOpen && (
+                    <div className="pl-4 mt-1 space-y-1 border-l-2 border-primary/30">
+                      {serviceLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          to={link.href}
+                          onClick={() => { setIsOpen(false); setMobileServicesOpen(false); }}
+                          className="block py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <a href="/#projects" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Проекти</a>
+                <a href="/#about" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">За нас</a>
+                <a href="/#contact" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Контакти</a>
+
                 <a
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setIsOpen(false)}
                   className="block w-full text-center bg-primary text-white px-6 py-3 text-sm font-semibold rounded mt-2"
                 >

@@ -1,43 +1,44 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
     title: 'Хранително-вкусова промишленост',
     description: 'Месопреработка, млекопреработка, хлебарство и сладкарство, производство на напитки. Продуктите са в пълно съответствие с изискванията НАССР.',
-    href: '#contact',
+    href: '/nastilki/hranitelno-vkusova',
   },
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
     title: 'Производства и складове',
     description: 'За всякакъв вид производствена и складова дейност. Тежки, индустриални, химично и топлоустойчиви подове за всяка индустрия.',
-    href: '#contact',
+    href: '/nastilki/proizvodstva-i-skladove',
   },
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
     title: 'Паркинги и гаражи',
     description: 'Настилките лесно се почистват, не се хлъзгат и са устойчиви на масло и петролни продукти. Полагаме и маркировки в неограничена цветова гама.',
-    href: '#contact',
+    href: '/nastilki/parking-i-garaji',
   },
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
     title: 'Тераси и хидроизолации',
     description: 'Гумирана хидроизолационна система за открити площи. Устойчива на големи амплитудни различия и атмосферни влияния.',
-    href: '#contact',
+    href: '/nastilki/terasi-i-hidroizolacii',
   },
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
     title: 'Декоративни настилки',
     description: 'Подходящи за офиси, магазини, заведения, ресторанти, хотели, аптеки, домове, вили и телевизионни студия. Богата палитра от цветове.',
-    href: '#contact',
+    href: '/nastilki/dekorativni',
   },
   {
     image: 'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
     title: 'Многослойни епоксидни настилки',
     description: 'Многослойна безфугова настилка от епоксидна смола с висока механична здравина, химическа устойчивост и дълъг експлоатационен живот.',
-    href: '#contact',
+    href: '/nastilki/mnogoslojni',
   },
 ];
 
@@ -69,13 +70,13 @@ function ServiceCard({ service, index }) {
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
           {service.description}
         </p>
-        <a
-          href={service.href}
+        <Link
+          to={service.href}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200"
         >
           Повече информация
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </Link>
       </div>
     </motion.div>
   );

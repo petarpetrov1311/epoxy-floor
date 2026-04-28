@@ -55,7 +55,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     const urlPath = (req.url || '/').split('?')[0];
-    const safePath = normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
+    const relativePath = urlPath.replace(/^\/+/, '');
+    const safePath = normalize(relativePath).replace(/^(\.\.[/\\])+/, '');
     let filePath = join(distDir, safePath);
 
     if (urlPath === '/' || !existsSync(filePath) || !extname(filePath)) {
