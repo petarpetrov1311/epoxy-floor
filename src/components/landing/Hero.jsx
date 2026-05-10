@@ -57,7 +57,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative h-[85vh] min-h-[550px] overflow-hidden bg-navy">
+    <section id="hero" className="relative h-[60vh] md:h-[85vh] min-h-[400px] overflow-hidden bg-navy">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={current}
@@ -77,20 +77,35 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
+      <div className="absolute left-6 right-6 top-6 z-10 md:hidden">
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key={current}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="max-w-[18rem] text-2xl font-bold leading-tight text-white"
+          >
+            {slides[current].title}
+          </motion.h1>
+        </AnimatePresence>
+      </div>
+
       {/* Content */}
-      <div className="relative h-full flex items-center">
+      <div className="relative h-full flex items-end pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="max-w-2xl"
             >
-              {/* Logo centered on slide */}
-              <div className="mb-6">
+              {/* Logo — hidden on mobile */}
+              <div className="mb-4 hidden md:block">
                 <img
                   src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/96a093570_ChatGPTImage2804202622_33_05.png"
                   alt="Epoxy Floors"
@@ -99,29 +114,29 @@ export default function Hero() {
                 />
               </div>
 
-              <div className="inline-block bg-primary/90 text-white text-xs font-semibold px-4 py-1.5 rounded mb-4 tracking-wide uppercase">
-                Категория: {slides[current].category}
+              <div className="hidden md:inline-block bg-primary/90 text-white text-xs font-semibold px-4 py-1.5 rounded mb-4 tracking-wide uppercase">
+                {slides[current].category}
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+              <h1 className="hidden md:block text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
                 {slides[current].title}
               </h1>
 
-              <p className="text-white/80 text-lg mb-8 leading-relaxed max-w-xl">
+              <p className="hidden md:block text-white/80 text-lg mb-8 leading-relaxed max-w-xl">
                 {slides[current].description}
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="#contact"
-                  className="bg-primary text-white px-8 py-3.5 font-semibold rounded hover:bg-primary/80 transition-all duration-200 flex items-center gap-2"
+                  className="bg-primary text-white px-5 py-2.5 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:bg-primary/80 transition-all duration-200 flex items-center gap-2"
                 >
                   Заявете Оферта
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="#services"
-                  className="border-2 border-white/60 text-white px-8 py-3.5 font-semibold rounded hover:border-primary hover:text-primary transition-all duration-200"
+                  className="border-2 border-white/60 text-white px-5 py-2.5 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:border-primary hover:text-primary transition-all duration-200"
                 >
                   Видове Настилки
                 </a>

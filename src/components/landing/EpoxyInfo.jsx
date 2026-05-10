@@ -14,7 +14,7 @@ export default function EpoxyInfo() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div ref={ref} className="grid lg:grid-cols-2 gap-14 items-center">
 
@@ -24,17 +24,17 @@ export default function EpoxyInfo() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3">
               Какво представляват<br />епоксидните настилки?
             </h2>
-            <div className="w-14 h-1 bg-primary mb-6" />
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <div className="w-14 h-1 bg-primary mb-4 md:mb-6" />
+            <p className="text-muted-foreground leading-relaxed mb-4 text-sm md:text-base">
               Когато става въпрос за избор на подови настилки за промишлена употреба, гараж или 
               други повърхности, епоксидните подове се явяват едно от най-добрите решения. 
               Епоксидните подове са много <strong className="text-foreground">издръжливи, приспособими и устойчиви</strong>, 
               ето защо са все по-предпочитан избор.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed text-sm md:text-base hidden md:block">
               Пакетът от продукти на EPOXY FLOORS дава възможност за съобразяване 
               със спецификата на дейността на всеки клиент. В едно предприятие могат да бъдат 
               приложени <strong className="text-foreground">повече от една система</strong>, съобразно използването 

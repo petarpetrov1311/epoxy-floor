@@ -40,23 +40,45 @@ export default function WhyChooseUs() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="py-20 bg-navy">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-10 md:py-20 bg-navy">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          className="text-center mb-8 md:mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Защо EPOXY Floors?</h2>
-          <div className="w-16 h-1 bg-primary mx-auto mb-5" />
-          <p className="text-white/70 max-w-xl mx-auto text-lg">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">Защо EPOXY Floors?</h2>
+          <div className="w-16 h-1 bg-primary mx-auto mb-4 md:mb-5" />
+          <p className="text-white/70 max-w-xl mx-auto text-sm md:text-lg">
             Нашето мото: <em className="text-primary font-semibold">„ДА СТЪПВАШ СТАБИЛНО"</em>
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Mobile: compact list */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {reasons.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-lg"
+              >
+                <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-white font-semibold text-sm">{item.title}</h3>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Desktop: full cards */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((item, i) => {
             const Icon = item.icon;
             return (

@@ -53,9 +53,6 @@ export default function Navbar() {
       </div>
 
       <motion.nav
-        initial={{ y: -10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled ? 'shadow-lg bg-white/98 backdrop-blur-sm' : 'bg-white'
         } border-b border-border`}
