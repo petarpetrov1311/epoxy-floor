@@ -41,8 +41,7 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        navy: '#0f1e2d',
-        teal: '#1bbcd4',
+        navy: '#1a1a2e',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -66,5 +65,5 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-  safelist: ['bg-navy', 'text-teal', 'border-teal'],
+  safelist: ['bg-navy'],
 };

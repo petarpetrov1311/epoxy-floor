@@ -15,7 +15,7 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-10 md:py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div ref={ref} className="grid lg:grid-cols-2 gap-14 items-center">
 
@@ -24,7 +24,7 @@ export default function About() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="relative"
+            className="relative hidden md:block"
           >
             <img
               src="https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg"
@@ -45,7 +45,7 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="pt-6"
+            className="md:pt-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Кои сме ние?</h2>
             <div className="w-14 h-1 bg-primary mb-6" />
