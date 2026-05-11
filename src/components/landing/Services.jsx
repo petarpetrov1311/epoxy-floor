@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -102,6 +102,10 @@ function ServiceCard({ service, index }) {
 export default function Services() {
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: '-50px' });
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c - 1 + services.length) % services.length);
+  const next = () => setCurrent((c) => (c + 1) % services.length);
 
   return (
     <section id="services" className="py-10 md:py-20 bg-muted/30">
@@ -124,7 +128,56 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+        {/* Mobile: slider with arrow controls */}
+        <div className="md:hidden relative">
+          <div className="overflow-hidden">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ServiceCard service={services[current]} index={0} />
+            </motion.div>
+          </div>
+
+          {/* Arrow buttons */}
+          <div className="flex items-center justify-between mt-4">
+            <button
+              onClick={prev}
+              aria-label="Previous service"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="flex gap-2">
+              {services.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    i === current ? 'bg-primary w-4' : 'bg-border'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              aria-label="Next service"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop: grid layout unchanged */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6">
           {services.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}

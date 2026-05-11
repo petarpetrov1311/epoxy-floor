@@ -15,6 +15,15 @@ const data = {
     'Устойчивост на UV лъчение',
     'Подходящи за открити и закрити паркинги',
   ],
+  gallery: [
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+  ],
+  image2: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+  description2: 'Полагаме маркировки и сигнализация в неограничена цветова гама, съобразени с конкретните изисквания на обекта. Нашите настилки за паркинги са тествани и сертифицирани за употреба на открито и са устойчиви на UV лъчение, замръзване и химически агенти.',
 };
 
 export default function ParkingIGaraji() {

@@ -15,6 +15,15 @@ const data = {
     'Подходяща за интензивна употреба',
     'Материали от Германия и Холандия',
   ],
+  gallery: [
+    'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+  ],
+  image2: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+  description2: 'Многослойната система се изгражда чрез последователно нанасяне на грунд, основен слой и защитен финиш, като всеки слой е прецизно контролиран за дебелина и качество. Резултатът е монолитна, безфугова повърхност с изключителни технически характеристики и дълъг живот.',
 };
 
 export default function MnogoslojniNastilki() {

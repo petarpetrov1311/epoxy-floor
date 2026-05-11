@@ -15,6 +15,15 @@ const data = {
     'Бързо изпълнение с минимален престой',
     'Гаранция 5–10 години',
   ],
+  gallery: [
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+  ],
+  image2: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+  description2: 'Нашите специалисти извършват обстоен оглед на обекта преди полагане, за да предложат оптималното решение за всяка конкретна ситуация. Работим с материали от водещи немски и холандски производители, гарантирайки издръжливост и дълъг живот на покритието дори при най-тежки условия на експлоатация.',
 };
 
 export default function ProizvodstvaISkladove() {

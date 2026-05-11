@@ -15,6 +15,15 @@ const data = {
     'Висока химическа устойчивост',
     'Безшевна, хигиенична повърхност',
   ],
+  gallery: [
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+  ],
+  image2: 'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
+  description2: 'Декоративните ни настилки са достъпни в над 80 цветови гами и различни ефекти на повърхността — от матово до интензивен гланц. Нашите дизайнери могат да разработят индивидуален проект съобразен с интериора на всеки обект, осигурявайки уникален и завършен вид.',
 };
 
 export default function DekorativniNastilki() {

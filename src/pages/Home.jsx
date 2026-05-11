@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from '../components/landing/Navbar';
 import Hero from '../components/landing/Hero';
 import Stats from '../components/landing/Stats';
+import EpoxyTextures from '../components/landing/EpoxyTextures';
 import Services from '../components/landing/Services';
-import EpoxyInfo from '../components/landing/EpoxyInfo';
 import Portfolio from '../components/landing/Portfolio';
 import About from '../components/landing/About';
 import WhyChooseUs from '../components/landing/WhyChooseUs';
@@ -16,8 +16,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Stats />
+      <EpoxyTextures />
       <Services />
-      <EpoxyInfo />
       <Portfolio />
       <About />
       <WhyChooseUs />

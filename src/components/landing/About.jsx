@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import PhotoThumbnailSlider from './PhotoThumbnailSlider';
 
 const benefits = [
   'Кратки срокове на изпълнение',
@@ -8,6 +9,15 @@ const benefits = [
   'Най-икономичната подова система за конкретния обект',
   'Безплатни консултации на всички етапи',
   'Поддръжка и бърз сервиз',
+];
+
+const sliderImages = [
+  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+  'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
 ];
 
 export default function About() {
@@ -24,19 +34,24 @@ export default function About() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="relative hidden md:block"
+            className="hidden md:block"
           >
-            <img
-              src="https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg"
-              alt="Нашият екип"
-              className="w-full h-[400px] object-cover rounded-lg shadow-lg"
-            />
-            <div className="absolute -bottom-6 -right-4 w-48 shadow-xl rounded-lg overflow-hidden border-4 border-white">
+            <div className="relative">
               <img
-                src="https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg"
-                alt="Нашето оборудване"
-                className="w-full h-36 object-cover"
+                src="https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg"
+                alt="Нашият екип"
+                className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
+              <div className="absolute -bottom-6 -right-4 w-48 shadow-xl rounded-lg overflow-hidden border-4 border-white bg-white p-4">
+                <img
+                  src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/516f7defa_ChatGPTImage2804202622_41_49.png"
+                  alt="Epoxy Floors Logo"
+                  className="w-full h-28 object-contain"
+                />
+              </div>
+            </div>
+            <div className="pt-10">
+              <PhotoThumbnailSlider images={sliderImages} altPrefix="Наш проект" />
             </div>
           </motion.div>
 

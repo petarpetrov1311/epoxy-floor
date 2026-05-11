@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="py-10 md:py-20 bg-navy">
+    <section id="why-choose-us" className="py-10 md:py-20 bg-navy">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
           ref={ref}

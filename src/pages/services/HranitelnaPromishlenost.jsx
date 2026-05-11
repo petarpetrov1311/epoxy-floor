@@ -15,6 +15,15 @@ const data = {
     'Безшевна повърхност без пори',
     'Устойчивост на температурни разлики',
   ],
+  gallery: [
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+    'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+  ],
+  image2: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+  description2: 'Използваме висококачествени материали от Германия и Холандия, които са специално разработени за приложения в хранително-вкусовата промишленост. Системите ни отговарят на всички европейски стандарти за хигиена и безопасност на храните, като осигуряват дълготраен и надежден резултат с гаранция до 10 години.',
 };
 
 export default function HranitelnoPromishlenost() {
