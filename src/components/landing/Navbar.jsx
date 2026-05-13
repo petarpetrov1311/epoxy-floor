@@ -175,10 +175,11 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t border-border overflow-hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.22 }}
+              className="absolute left-0 right-0 top-full md:hidden bg-white border-t border-border shadow-xl overflow-hidden"
             >
               <div className="px-6 py-4 space-y-3">
                 <a href="/#hero" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Начало</a>

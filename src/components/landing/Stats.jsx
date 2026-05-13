@@ -32,7 +32,7 @@ function AnimatedCounter({ target, suffix, inView }) {
   }, [inView, target]);
 
   return (
-    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+    <span className="text-xl sm:text-3xl md:text-5xl font-bold text-primary">
       {count.toLocaleString('bg-BG')}{suffix}
     </span>
   );
@@ -44,8 +44,8 @@ export default function Stats() {
 
   return (
     <section id="stats" className="bg-navy py-6 md:py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div ref={ref} className="grid gap-2 text-center md:grid-cols-3 md:gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div ref={ref} className="grid grid-cols-3 gap-1 text-center sm:gap-3 md:gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
 
@@ -55,17 +55,17 @@ export default function Stats() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="relative py-4 md:py-6"
+                className="relative py-3 md:py-6"
               >
                 {i > 0 && (
                   <div className="absolute left-0 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-white/15 md:block" />
                 )}
-                <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-primary ring-1 ring-white/15 md:mb-4 md:h-12 md:w-12">
-                  <Icon className="h-5 w-5 md:h-6 md:w-6" />
+                <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-primary ring-1 ring-white/15 sm:h-10 sm:w-10 md:mb-4 md:h-12 md:w-12">
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                 </div>
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={inView} />
-                <div className="mt-2 text-sm text-white/70 font-medium">{stat.label}</div>
-                <div className="mt-3 w-10 h-0.5 bg-primary/60 mx-auto" />
+                <div className="mt-1 text-[11px] leading-tight text-white/70 font-medium sm:text-sm md:mt-2">{stat.label}</div>
+                <div className="mt-2 w-7 h-0.5 bg-primary/60 mx-auto md:mt-3 md:w-10" />
               </motion.div>
             );
           })}
