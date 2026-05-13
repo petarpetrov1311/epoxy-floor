@@ -55,15 +55,30 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const navSurfaceClass = overDarkSection
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const closeMobileMenuOnScroll = () => {
+      setIsOpen(false);
+      setMobileServicesOpen(false);
+    };
+
+    window.addEventListener('scroll', closeMobileMenuOnScroll, { passive: true });
+    return () => window.removeEventListener('scroll', closeMobileMenuOnScroll);
+  }, [isOpen]);
+
+  const menuOpen = isOpen || dropdownOpen;
+  const navSurfaceClass = menuOpen
+    ? 'bg-white shadow-lg backdrop-blur-sm'
+    : overDarkSection
     ? 'bg-black/20 backdrop-blur-md shadow-none'
     : scrolled
       ? 'shadow-lg bg-white/98 backdrop-blur-sm'
       : 'bg-white';
-  const navTextClass = overDarkSection
+  const navTextClass = !menuOpen && overDarkSection
     ? 'text-white drop-shadow-sm hover:text-primary'
     : 'text-foreground hover:text-primary';
-  const menuButtonClass = overDarkSection ? 'text-white drop-shadow-sm' : 'text-foreground';
+  const menuButtonClass = !menuOpen && overDarkSection ? 'text-white drop-shadow-sm' : 'text-foreground';
 
   return (
     <>
@@ -88,7 +103,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-18 py-3">
             {/* Logo */}
-            <a href="#hero" className="flex items-center gap-3">
+            <Link to="/#hero" className="flex items-center gap-3">
               <img
                 src="/images/site/logo-navbar.png"
                     alt="Epoxy Floors Logo"
@@ -107,7 +122,7 @@ export default function Navbar() {
                   <div className="text-[10px] text-muted-foreground">Индустриални и декоративни настилки</div>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-8">

@@ -1,5 +1,5 @@
 import { Toaster } from "@/components/ui/toaster"
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import BlogPost from './pages/BlogPost';
@@ -14,16 +14,29 @@ import ProizvodstvaISkladove from './pages/services/ProizvodstveniSkladove';
 import TerasiIHidroizolacii from './pages/services/TerasiIHidroizolacii';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { hash, pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useLayoutEffect(() => {
+    if (hash) {
+      window.requestAnimationFrame(() => {
+        document.querySelector(hash)?.scrollIntoView({ block: 'start' });
+      });
+      return;
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [hash, pathname]);
 
   return null;
 }
 
 function App() {
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

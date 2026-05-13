@@ -84,7 +84,28 @@ export default function PhotoThumbnailSlider({
   return (
     <>
       <div className={className}>
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="md:hidden overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex gap-3 px-1">
+            {images.map((src, imgIdx) => (
+              <button
+                key={src}
+                onClick={() => setLightbox(imgIdx)}
+                aria-label={`Open image ${imgIdx + 1}`}
+                className="w-28 flex-shrink-0 overflow-hidden rounded-md border border-border bg-white shadow-sm transition-all duration-200 hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  src={src}
+                  alt={`${altPrefix} ${imgIdx + 1}`}
+                  className="h-20 w-full object-cover"
+                  loading="lazy"
+                  draggable={false}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden md:flex items-center gap-3">
           <button
             onClick={() => goDir(-1)}
             disabled={locked || imageCount <= 1}
@@ -137,7 +158,7 @@ export default function PhotoThumbnailSlider({
           </button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-3">
+        <div className="hidden md:flex justify-center gap-2 mt-3">
           {images.map((_, i) => (
             <button
               key={i}
