@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import PhotoThumbnailSlider from './PhotoThumbnailSlider';
@@ -12,12 +12,12 @@ const benefits = [
 ];
 
 const sliderImages = [
-  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
-  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
-  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
-  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
-  'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
-  'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
+  '/images/projects/about-us1.jpg',
+  '/images/projects/about-us2.jpg',
+  '/images/projects/oborudvane1.jpg',
+  '/images/projects/oborudvane2.jpg',
+  '/images/projects/parking.jpg',
+  '/images/projects/img-3147-1-scaled.jpeg',
 ];
 
 export default function About() {
@@ -38,13 +38,13 @@ export default function About() {
           >
             <div className="relative">
               <img
-                src="https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg"
+                src="/images/projects/about-us2.jpg"
                 alt="Нашият екип"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-6 -right-4 w-48 shadow-xl rounded-lg overflow-hidden border-4 border-white bg-white p-4">
                 <img
-                  src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/516f7defa_ChatGPTImage2804202622_41_49.png"
+                  src="/images/site/logo-navbar.png"
                   alt="Epoxy Floors Logo"
                   className="w-full h-28 object-contain"
                 />

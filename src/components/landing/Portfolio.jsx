@@ -1,51 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
+import { galleryCategories, galleryProjects } from '../../data/gallery';
 
-const categories = ['Всички', 'Декоративни настилки', 'Паркинги и гаражи', 'Производства и складове', 'Тераси и хидроизолации'];
-
-const projects = [
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
-    title: 'Производствен цех',
-    category: 'Производства и складове',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
-    title: 'Хранително-вкусово производство',
-    category: 'Производства и складове',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
-    title: 'Паркинг с маркировки',
-    category: 'Паркинги и гаражи',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
-    title: 'Индустриален склад',
-    category: 'Производства и складове',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
-    title: 'Декоративна настилка — Офис',
-    category: 'Декоративни настилки',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
-    title: 'Многослойна епоксидна настилка',
-    category: 'Декоративни настилки',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2024/01/%D0%BA%D1%8A%D1%89%D0%B0-%D0%B7%D0%B0-%D0%B3%D0%BE%D1%81%D1%82%D0%B8-1.jpg',
-    title: 'Тераса — Хидроизолация',
-    category: 'Тераси и хидроизолации',
-  },
-  {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
-    title: 'Химически устойчива настилка',
-    category: 'Производства и складове',
-  },
-];
+const categories = ['Всички', ...galleryCategories.map((category) => category.title)];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Всички');
@@ -54,8 +12,8 @@ export default function Portfolio() {
   const headingInView = useInView(headingRef, { once: true, margin: '-50px' });
 
   const filtered = activeCategory === 'Всички'
-    ? projects
-    : projects.filter((p) => p.category === activeCategory);
+    ? galleryProjects
+    : galleryProjects.filter((p) => p.category === activeCategory);
 
   return (
     <section id="projects" className="py-10 md:py-20">
@@ -74,7 +32,6 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* Category Filters */}
         <div className="flex flex-wrap gap-2 justify-center mb-10">
           {categories.map((cat) => (
             <button
@@ -91,7 +48,6 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid */}
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
@@ -133,7 +89,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightboxImage && (
           <motion.div

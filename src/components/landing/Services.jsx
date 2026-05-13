@@ -1,41 +1,41 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    image: '/images/projects/about-us1.jpg',
     title: 'Хранително-вкусова промишленост',
     description: 'Месопреработка, млекопреработка, хлебарство и сладкарство, производство на напитки. Продуктите са в пълно съответствие с изискванията НАССР.',
     href: '/nastilki/hranitelno-vkusova',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    image: '/images/projects/oborudvane1.jpg',
     title: 'Производства и складове',
     description: 'За всякакъв вид производствена и складова дейност. Тежки, индустриални, химично и топлоустойчиви подове за всяка индустрия.',
     href: '/nastilki/proizvodstva-i-skladove',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+    image: '/images/projects/parking.jpg',
     title: 'Паркинги и гаражи',
     description: 'Настилките лесно се почистват, не се хлъзгат и са устойчиви на масло и петролни продукти. Полагаме и маркировки в неограничена цветова гама.',
     href: '/nastilki/parking-i-garaji',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    image: '/images/projects/oborudvane2.jpg',
     title: 'Тераси и хидроизолации',
     description: 'Гумирана хидроизолационна система за открити площи. Устойчива на големи амплитудни различия и атмосферни влияния.',
     href: '/nastilki/terasi-i-hidroizolacii',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us2.jpg',
+    image: '/images/projects/about-us2.jpg',
     title: 'Декоративни настилки',
     description: 'Подходящи за офиси, магазини, заведения, ресторанти, хотели, аптеки, домове, вили и телевизионни студия. Богата палитра от цветове.',
     href: '/nastilki/dekorativni',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2026/02/IMG_3147-1-scaled.jpeg',
+    image: '/images/projects/img-3147-1-scaled.jpeg',
     title: 'Многослойни епоксидни настилки',
     description: 'Многослойна безфугова настилка от епоксидна смола с висока механична здравина, химическа устойчивост и дълъг експлоатационен живот.',
     href: '/nastilki/mnogoslojni',
@@ -54,21 +54,20 @@ function ServiceCard({ service, index }) {
       transition={{ duration: 0.4, delay: index * 0.06 }}
       className="group"
     >
-      {/* Mobile: compact horizontal card */}
       <Link to={service.href} className="md:hidden flex items-center gap-3 bg-white rounded-lg overflow-hidden shadow-sm border border-border p-3 hover:border-primary/50 transition-all duration-200">
         <img
           src={service.image}
           alt={service.title}
-          className="w-16 h-16 object-cover rounded flex-shrink-0"
+          className="w-20 h-20 object-cover rounded flex-shrink-0"
           loading="lazy"
         />
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight">{service.title}</h3>
+          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{service.description}</p>
         </div>
         <ArrowRight className="w-4 h-4 text-primary flex-shrink-0" />
       </Link>
 
-      {/* Desktop: full card */}
       <div className="hidden md:block bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-400 border border-border h-full">
         <div className="relative h-52 overflow-hidden">
           <img
@@ -102,10 +101,6 @@ function ServiceCard({ service, index }) {
 export default function Services() {
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: '-50px' });
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + services.length) % services.length);
-  const next = () => setCurrent((c) => (c + 1) % services.length);
 
   return (
     <section id="services" className="py-10 md:py-20 bg-muted/30">
@@ -128,55 +123,12 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Mobile: slider with arrow controls */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ServiceCard service={services[current]} index={0} />
-            </motion.div>
-          </div>
-
-          {/* Arrow buttons */}
-          <div className="flex items-center justify-between mt-4">
-            <button
-              onClick={prev}
-              aria-label="Previous service"
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            {/* Dot indicators */}
-            <div className="flex gap-2">
-              {services.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                    i === current ? 'bg-primary w-4' : 'bg-border'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={next}
-              aria-label="Next service"
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="md:hidden grid gap-3">
+          {services.map((service, i) => (
+            <ServiceCard key={service.title} service={service} index={i} />
+          ))}
         </div>
 
-        {/* Desktop: grid layout unchanged */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6">
           {services.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Phone, Mail } from 'lucide-react';
 
 const serviceLinks = [
@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <img
-              src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/96a093570_ChatGPTImage2804202622_33_05.png"
+              src="/images/site/logo-hero-footer.png"
               alt="Epoxy Floors"
               className="h-14 w-auto object-contain mb-5"
               onError={(e) => {

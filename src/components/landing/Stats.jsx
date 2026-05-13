@@ -32,7 +32,7 @@ function AnimatedCounter({ target, suffix, inView }) {
   }, [inView, target]);
 
   return (
-    <span className="text-4xl md:text-5xl font-bold text-primary">
+    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
       {count.toLocaleString('bg-BG')}{suffix}
     </span>
   );
@@ -43,9 +43,9 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="stats" className="bg-navy py-8 md:py-16">
+    <section id="stats" className="bg-navy py-6 md:py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div ref={ref} className="grid gap-6 text-center sm:grid-cols-3">
+        <div ref={ref} className="grid gap-2 text-center md:grid-cols-3 md:gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
 
@@ -55,13 +55,13 @@ export default function Stats() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="relative py-6"
+                className="relative py-4 md:py-6"
               >
                 {i > 0 && (
-                  <div className="absolute left-0 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-white/15 sm:block" />
+                  <div className="absolute left-0 top-1/2 hidden h-16 w-px -translate-y-1/2 bg-white/15 md:block" />
                 )}
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-primary ring-1 ring-white/15">
-                  <Icon className="h-6 w-6" />
+                <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-primary ring-1 ring-white/15 md:mb-4 md:h-12 md:w-12">
+                  <Icon className="h-5 w-5 md:h-6 md:w-6" />
                 </div>
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={inView} />
                 <div className="mt-2 text-sm text-white/70 font-medium">{stat.label}</div>

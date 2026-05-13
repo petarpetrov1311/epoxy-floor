@@ -1,30 +1,30 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const textures = [
   {
     name: 'Епоксидна настилка',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-513_COYOTE_1.4.avif',
+    image: '/images/textures/epoxy-texture-1.avif',
   },
   {
     name: 'Полиуретан-цимент',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-977_THYME_1.4.avif',
+    image: '/images/textures/epoxy-texture-2.avif',
   },
   {
     name: 'Настилка от кварцов пясък',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-968_WAXWING_1.4.avif',
+    image: '/images/textures/epoxy-texture-3.avif',
   },
   {
     name: 'Каменен килим',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-966_LOON_1.4.avif',
+    image: '/images/textures/epoxy-texture-4.avif',
   },
   {
     name: 'Хидроизолации',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-807_TIDALWAVE_1.4.avif',
+    image: '/images/textures/epoxy-texture-5.avif',
   },
   {
     name: 'Texture 6',
-    image: 'https://optusresin.com/wp-content/uploads/2024/10/FB-716_CREEKBED_1.4.avif',
+    image: '/images/textures/epoxy-texture-6.avif',
   },
 ];
 

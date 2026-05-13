@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -90,7 +90,7 @@ export default function Navbar() {
             {/* Logo */}
             <a href="#hero" className="flex items-center gap-3">
               <img
-                src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/516f7defa_ChatGPTImage2804202622_41_49.png"
+                src="/images/site/logo-navbar.png"
                     alt="Epoxy Floors Logo"
                     className="h-14 w-auto object-contain"
                 onError={(e) => {
@@ -147,6 +147,8 @@ export default function Navbar() {
               </div>
 
               <a href="/#projects" className={`text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Проекти</a>
+              <Link to="/galeria" className={`text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Галерия</Link>
+              <Link to="/blogove" className={`text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Блогове</Link>
               <a href="/#about" className={`text-sm font-medium transition-colors duration-200 ${navTextClass}`}>За нас</a>
               <a href="/#contact" className={`text-sm font-medium transition-colors duration-200 ${navTextClass}`}>Контакти</a>
             </div>
@@ -207,6 +209,8 @@ export default function Navbar() {
                 </div>
 
                 <a href="/#projects" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Проекти</a>
+                <Link to="/galeria" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Галерия</Link>
+                <Link to="/blogove" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Блогове</Link>
                 <a href="/#about" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">За нас</a>
                 <a href="/#contact" onClick={() => setIsOpen(false)} className="block py-2 text-foreground hover:text-primary font-medium transition-colors">Контакти</a>
 

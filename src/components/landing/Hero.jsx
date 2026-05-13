@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane1.jpg',
+    image: '/images/projects/oborudvane1.jpg',
     category: 'Производства и складове',
     title: 'ПОДОВИ НАСТИЛКИ ЗА ИНДУСТРИЯТА',
     description: 'Изграждаме подови настилки за производствени помещения, халета, складове от лека, тежка и химическа промишленост.',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/parking.jpg',
+    image: '/images/projects/parking.jpg',
     category: 'Паркинги и гаражи',
     title: 'ПАРКИНГИ И ГАРАЖИ',
     description: 'Настилките лесно се почистват, не се хлъзгат и са устойчиви на масло и петролни продукти.',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/about-us1.jpg',
+    image: '/images/projects/about-us1.jpg',
     category: 'Декоративни настилки',
     title: 'ДЕКОРАТИВНИ ЕПОКСИДНИ НАСТИЛКИ',
     description: 'Подходящи за офиси, магазини, заведения, ресторанти, хотели, домове и много други.',
   },
   {
-    image: 'https://www.epoxy-fl.com/wp-content/uploads/2022/12/oborudvane2.jpg',
+    image: '/images/projects/oborudvane2.jpg',
     category: 'Тераси и хидроизолации',
     title: 'ХИДРОИЗОЛАЦИИ',
     description: 'Гумирана хидроизолационна система за открити площи. Устойчива на големи амплитудни различия.',
@@ -107,7 +107,7 @@ export default function Hero() {
               {/* Logo — hidden on mobile */}
               <div className="mb-4 hidden md:block">
                 <img
-                  src="https://media.base44.com/images/public/69e3896dcda9941206a8adc2/96a093570_ChatGPTImage2804202622_33_05.png"
+                  src="/images/site/logo-hero-footer.png"
                   alt="Epoxy Floors"
                   className="h-28 w-auto object-contain"
                   onError={(e) => e.target.style.display = 'none'}

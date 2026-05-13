@@ -1,22 +1,22 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const comparisons = [
   {
-    before: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/92c74aa75_generated_e0302dae.png',
-    after: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/eabfb9bb4_generated_0fbee19e.png',
+    before: '/images/before-after/before-1.png',
+    after: '/images/before-after/after-1.png',
     caption: 'Garage Floor Renovation',
     description: 'From cracked concrete to high-gloss obsidian finish',
   },
   {
-    before: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/657ae0145_generated_c029b3d2.png',
-    after: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/92a8bc338_generated_f188c67d.png',
+    before: '/images/before-after/before-2.png',
+    after: '/images/before-after/after-2.png',
     caption: 'Commercial Space Transformation',
     description: 'Industrial warehouse to premium metallic bronze floor',
   },
   {
-    before: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/cfad0c517_generated_43a949d0.png',
-    after: 'https://media.base44.com/images/public/69e3896dcda9941206a8adc2/5cd92cbb6_generated_af5190c6.png',
+    before: '/images/before-after/before-3.png',
+    after: '/images/before-after/after-3.png',
     caption: 'Residential Basement Upgrade',
     description: 'Plain concrete transformed into decorative marble epoxy',
   },
