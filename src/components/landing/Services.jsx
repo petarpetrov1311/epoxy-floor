@@ -5,6 +5,24 @@ import { Link } from 'react-router-dom';
 
 const services = [
   {
+    image: '/images/projects/oborudvane2.jpg',
+    title: 'Тераси и плоски покриви',
+    description: 'Хидроизолационни и защитни системи за тераси, балкони и плоски покриви с устойчивост на атмосферни влияния.',
+    href: '/nastilki/terasi-i-ploski-pokrivi',
+  },
+  {
+    image: '/images/projects/kashta-za-gosti-1.jpg',
+    title: 'Двор и открити части',
+    description: 'Решения за дворове, алеи и открити площи, устойчиви на външни условия и ежедневно натоварване.',
+    href: '/nastilki/dvor-i-otkriti-chasti',
+  },
+  {
+    image: '/images/projects/parking.jpg',
+    title: 'Игрища и спортни съоръжения',
+    description: 'Настилки за спортни и обществени зони с добро сцепление, безопасност и възможност за маркировки.',
+    href: '/nastilki/igrishta-i-sportni-saorazhenia',
+  },
+  {
     image: '/images/projects/about-us1.jpg',
     title: 'Хранително-вкусова промишленост',
     description: 'Месопреработка, млекопреработка, хлебарство и сладкарство, производство на напитки. Продуктите са в пълно съответствие с изискванията НАССР.',
@@ -23,22 +41,22 @@ const services = [
     href: '/nastilki/parking-i-garaji',
   },
   {
-    image: '/images/projects/oborudvane2.jpg',
-    title: 'Тераси и хидроизолации',
-    description: 'Гумирана хидроизолационна система за открити площи. Устойчива на големи амплитудни различия и атмосферни влияния.',
-    href: '/nastilki/terasi-i-hidroizolacii',
+    image: '/images/projects/img-3147-1-scaled.jpeg',
+    title: 'Мортел',
+    description: 'Здрави и износоустойчиви подови системи за обекти с високи изисквания към механична устойчивост.',
+    href: '/nastilki/mortel',
+  },
+  {
+    image: '/images/projects/about-us1.jpg',
+    title: 'Мандри и кланици',
+    description: 'Безфугови и хигиенни настилки за мокри помещения, хранителна среда и интензивно почистване.',
+    href: '/nastilki/mandri-i-klanici',
   },
   {
     image: '/images/projects/about-us2.jpg',
     title: 'Декоративни настилки',
     description: 'Подходящи за офиси, магазини, заведения, ресторанти, хотели, аптеки, домове, вили и телевизионни студия. Богата палитра от цветове.',
     href: '/nastilki/dekorativni',
-  },
-  {
-    image: '/images/projects/img-3147-1-scaled.jpeg',
-    title: 'Многослойни епоксидни настилки',
-    description: 'Многослойна безфугова настилка от епоксидна смола с висока механична здравина, химическа устойчивост и дълъг експлоатационен живот.',
-    href: '/nastilki/mnogoslojni',
   },
 ];
 

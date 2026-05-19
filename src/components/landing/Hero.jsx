@@ -23,7 +23,7 @@ const slides = [
   },
   {
     image: '/images/projects/oborudvane2.jpg',
-    category: 'Тераси и хидроизолации',
+    category: 'Тераси и плоски покриви',
     title: 'ХИДРОИЗОЛАЦИИ',
     description: 'Гумирана хидроизолационна система за открити площи. Устойчива на големи амплитудни различия.',
   },
@@ -77,7 +77,7 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute left-6 right-6 top-6 z-10 md:hidden">
+      <div className="absolute left-5 right-5 top-[22%] z-10 md:hidden">
         <AnimatePresence mode="wait">
           <motion.h1
             key={current}
@@ -85,7 +85,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="max-w-[18rem] text-2xl font-bold leading-tight text-white"
+            className="max-w-[20rem] text-[1.55rem] font-bold leading-[1.12] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
           >
             {slides[current].title}
           </motion.h1>
@@ -93,7 +93,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative h-full flex items-end pb-16 md:pb-20">
+      <div className="relative h-full flex items-end pb-20 md:pb-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -126,17 +126,17 @@ export default function Hero() {
                 {slides[current].description}
               </p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2.5 md:gap-3">
                 <a
                   href="#contact"
-                  className="bg-primary text-white px-5 py-2.5 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:bg-primary/80 transition-all duration-200 flex items-center gap-2"
+                  className="bg-primary text-white px-4 py-2 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:bg-primary/80 transition-all duration-200 flex items-center gap-2"
                 >
                   Заявете Оферта
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
                 </a>
                 <a
                   href="#services"
-                  className="border-2 border-white/60 text-white px-5 py-2.5 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:border-primary hover:text-primary transition-all duration-200"
+                  className="border-2 border-white/60 text-white px-4 py-2 md:px-8 md:py-3.5 text-sm md:text-base font-semibold rounded hover:border-primary hover:text-primary transition-all duration-200"
                 >
                   Видове Настилки
                 </a>
@@ -149,13 +149,13 @@ export default function Hero() {
       {/* Prev/Next arrows */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/20 hover:bg-primary/80 rounded-full flex items-center justify-center text-white backdrop-blur-sm transition-all duration-200 z-10"
+        className="absolute left-3 top-[54%] -translate-y-1/2 w-9 h-9 md:left-4 md:top-1/2 md:w-11 md:h-11 bg-white/20 hover:bg-primary/80 rounded-full flex items-center justify-center text-white backdrop-blur-sm transition-all duration-200 z-10"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/20 hover:bg-primary/80 rounded-full flex items-center justify-center text-white backdrop-blur-sm transition-all duration-200 z-10"
+        className="absolute right-3 top-[54%] -translate-y-1/2 w-9 h-9 md:right-4 md:top-1/2 md:w-11 md:h-11 bg-white/20 hover:bg-primary/80 rounded-full flex items-center justify-center text-white backdrop-blur-sm transition-all duration-200 z-10"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
